@@ -1,0 +1,189 @@
+// 자바 퀴즈 10
+
+1. 다음 중 인터페이스의 특징이 아닌 것은?
+
+A. 인터페이스의 객체는 생성할 수 없다. O
+
+B. 인터페이스는 클래스와 같이 멤버 변수(필드)의 선언이 가능하다.  x
+
+C. 인터페이스의 추상 메소드는 자동으로 public이다. O
+
+D. 클래스에서 인터페이스를 구현할 때 implements 키워드를 이용하며, 모든 추상 메소드를 작성하여야 한다. O
+
+
+
+
+
+
+
+02.  빈칸을 적절히 채우고, 출력 결과 - 예시와 같이 출력되도록  클래스 TV에 필요한 메소드를 추가 작성하라.
+( 인터페이스 활용)
+
+
+________ Device {
+   void on();
+   void off();
+interface
+}
+
+
+
+public class TV _________ Device {
+   public static void main(String[] args) {
+      TV myTV = new TV();
+      myTV.on();
+      myTV.watch();
+      myTV.off();
+   } 
+}
+implements
+
+
+
+
+
+
+
+[  출력 결과 - 예시 ]
+켜졌습니다.
+방송중입니다.
+종료합니다.
+
+
+
+
+
+
+
+
+03. 다음은 도형의 구성을 묘사하는 인터페이스이다.  
+인터페이스 Shape을 구현한 클래스 Circle를 작성하고 전체 프로그램을 완성하라.
+
+// Shape 인터페이스 
+interface Shape {
+   final double PI = 3.14; // 상수
+
+   void draw(); // 도형을 그리는 추상 메소드
+
+   double getArea(); // 도형의 면적을 리턴하는 추상 메소드
+
+   default public void redraw() {   // 디폴트 메소드
+      System.out.print("--- 다시 그립니다.");
+      draw();
+   }
+
+}
+
+
+// 실행 클래스의 main 메서드 
+
+public static void main(String[] args) {
+   Shape donut = new Circle(10); // 반지름이 10인 원 객체
+   donut.redraw();
+   System.out.println("면적은 "+ donut.getArea());
+}
+
+
+
+
+
+
+
+
+
+04.  03의 Shape 인터페이스에 클래스 Rect를 추가 작성하고 전체 프로그램을 완성하라.
+
+[ 실행 결과 - 예시 ]
+--- 다시 그립니다.반지름이 10인 원입니다.
+--- 다시 그립니다.10x40크기의 사각형 입니다.
+면적은 314.0
+면적은 1884.0000000000002
+면적은 400.0
+
+
+
+
+
+
+
+
+
+
+
+
+05.  Outer 클래스의 내부 클래스 Inner 의 멤버변수  iv 의 값이 출력되도록 
+      프로그래밍 하여라. 
+     
+
+class Outer { // 외부 클래스
+	Inner inner = new Inner();
+	class Inner { // ( ) 내부 클래스 인스턴스 클래스
+		int iv=100;
+	}
+}
+
+Outer outer = new Outer;
+outer.inner.iv;
+
+
+
+
+
+
+
+
+06.  Outer 클래스의 내부 static 클래스 Inner 의 멤버변수  iv 의 값이 출력되도록 
+      프로그래밍 하여라. 
+
+
+class Outer { // 외부 클래스
+	static class Inner { // (static ) 내부 클래스 클래스
+		int iv=200;
+	}
+}
+Inner.iv
+
+
+
+
+
+
+
+
+
+
+
+
+07. 아래의 중첩 클래스 구조에서 제시하는 실행결과를 얻도록  코드를 완성하시오
+( 교재 288 참조)
+
+
+class Outer {
+	int value=10; // Outer.this.value
+	class Inner { // (instance inner class) 인스턴스 클래스
+		int value=20; // this.value
+		void method1() {
+			int value=30; // value
+			System.out.println( // 코딩1);
+			System.out.println( // 코딩2);
+			System.out.println( // 코딩3);
+		}
+	} // Inner클래스의 끝
+} // Outer클래스의 끝
+
+
+
+class Exercise7_8 {
+	public static void main(String args[]) {
+	// 코딩4
+	inner.method1();
+	}
+}
+
+
+[ 실행 결과]
+30
+20 
+10 
+
+

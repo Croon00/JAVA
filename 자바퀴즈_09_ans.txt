@@ -1,0 +1,827 @@
+// 자바 퀴즈 9 :  OOP
+
+01. 객체지향 OOP의 3대 요소는?
+
+
+[ 문제 풀이 ]
+상속, 캡슐화, 다형성 
+
+-------------------------------------
+
+
+02. 다형성에 대한 설명 중 틀린 것은?
+
+A. 추상 메소드를 두는 이유는 상속 받는 클래스에서 다형성을 실현하도록 하기 위함이다.
+
+B. 인터페이스도 구현하는 클래스에서 다형성을 실현하도록 하기 위함이다.
+
+C. 다형성은 서브클래스들이 수퍼 클래스의 동일한 메소드를 서로 다르게 오버라이딩하여 이루어진다.
+
+D. 자바에서 다형성은 모호한(ambiguous) 문제를 일으키므로 사용하지 않는 것이 바람직하다.
+
+
+[ 문제 풀이 ]
+D. 자바에서 다형성은 모호한(ambiguous) 문제를 일으키므로 사용하지 않는 것이 바람직하다.
+
+
+-------------------------------------
+
+03. 아래의 소스는 부모와 자식 클래스를 생성하고 참조 변수간의 형 변환 테스트를 실습하는 예제이다. 
+주석으로 처리한 A~E 실행문 중 에러가 나는 경우 에러의 원인을 기술하여라. 
+
+[ 프로그래밍 소스 ]
+class Car {}
+class FireEngine extends Car {}
+class Ambulance extends Car {}
+
+
+public class Polymorphism_test2 {
+
+	public static void main(String[] args) {
+		
+		FireEngine f = new FireEngine();
+		
+		Car c1 = (Car)f;  // A
+		Car c2 = f; // B
+		FireEngine f2 = (FireEngine) c1;  // C
+		FireEngine f3 = c1;  // D
+		Ambulance a = (FireEngine)f2;  // E
+
+	}
+
+}
+
+[ 문제풀이 ] 
+D, E는 에러 발생 
+
+// 다운캐스팅 자손으로 형변환할 경우에는 형변환연산자는 생략 불가 
+FireEngine f3 = c1;
+
+// 상속관계가 아닌 경우에서는 클래스간의 형변환은 불가 
+Ambulance a = (FireEngine)f2;
+
+
+
+
+-------------------------------------
+
+
+04.  아래 명령을 참조하여 클래스를 선언하고 instanceof 연산자를 이용하여 
+ 조상 클래스가 맞으면 조상 클래스로 형변환하고 메세지가 출력되도록 프로그래밍하여라.
+
+Battery 클래스를 상속받는 Rocket, Duracell, Energizer 클래스를 선언한다. 
+Duracell 클래스를 상속받는 Duracell_AA, 
+Energizer 클래스를 상속받는 Energizer_AAA 클래스를 선언한다. 
+
+예) 
+if (참조변수1 instanceof 클래스명) {
+	클래스명 참조변수2 = (클래스명)참조변수1;
+	System.out.println(" 참조변수 ? 은 ? 클래스 형태로 형변환이 완료되었습니다.");
+}
+
+
+
+[ 문제 풀이 ]
+
+
+class Battery {
+	double volt; // 용량
+	String kind; // AA, AAA
+	
+	Battery(double volt, String kind) {
+		this.volt = volt;
+		this.kind = kind;
+	}
+	
+	void info() {
+		System.out.println("volt = " + volt);
+		System.out.println("kind = " + kind);
+	}
+	
+}
+
+
+class Rocket extends Battery {
+	String brand = "Rocket";
+	Rocket(double volt, String kind) {
+		super(volt, kind);
+	}
+	
+	void info2() {
+		System.out.println("brand = Rocket");
+		System.out.println("volt = " + volt);
+		System.out.println("kind = " + kind);
+	}
+	
+}
+
+
+class Duracell extends Battery {
+	String brand = "Duracell";
+	Duracell(double volt, String kind) {
+		super(volt, kind);
+	}
+	
+	void info2() {
+		System.out.println("brand = Duracell");
+		System.out.println("volt = " + volt);
+		System.out.println("kind = " + kind);
+	}
+	
+}
+
+
+class Energizer extends Battery {
+	String brand = "Energizer";
+	Energizer(double volt, String kind) {
+		super(volt, kind);
+	}
+	
+	void info2() {
+		System.out.println("brand = Energizer");
+		System.out.println("volt = " + volt);
+		System.out.println("kind = " + kind);
+	}
+	
+}
+
+public class Quiz9_04 {
+
+	public static void main(String[] args) {
+		
+		Battery b = new Battery(1.5, "AA");
+		Rocket r = new Rocket(1.9, "AAA");
+		Energizer e = new Energizer(2.5, "AA");
+		Duracell d = new Duracell(2.5, "AA");
+		
+		Battery b2 = new Battery(1.5, "AA");
+		System.out.println(b2.getClass()); //class Battery
+		// Battery b2 = null;
+		
+		if (r instanceof Battery) {
+			b2 = (Battery)r;
+			System.out.printf(" 참조변수 %s 는/은 %s 클래스 형태로 형변환이 완료되었습니다.%n",
+								"r", "Battery");
+		}
+		
+		// 참조변수의 인스턴스 확인 
+		System.out.println(b2.getClass()); // class Rocket
+		System.out.println(r.getClass()); // class Rocket
+		System.out.println(d.getClass()); // class Duracell
+		
+		r.info2();
+		
+		b2.info();
+		// 에러 발생 
+		//b2.info2();
+		
+		
+		
+		
+	}
+
+}
+
+
+
+
+
+
+
+05. 아래의 소스를 참조하여 Animal 클래스를 상속받는 
+3개의 Human, Tiger, Eagle 클래스를 선언하고 테스트 하여라. 
+
+
+
+class Animal{
+	public void move()
+	{
+		System.out.println("동물이 움직입니다.");
+	}
+}
+
+class Human extends Animal{
+	public void move()
+	{
+		System.out.println("사람이 두 발로 걷습니다. ");
+	}
+
+	public void readBook()
+	{
+		System.out.println("사람이 책을 읽습니다. ");
+	}
+}
+
+class Tiger extends Animal{
+	public void move()
+	{
+		System.out.println("호랑이가 네 발로 뜁니다. ");
+	}
+
+	public void hunting() 
+	{
+		System.out.println("호랑이가 사냥을 합니다. ");
+	}
+}
+
+class Eagle extends Animal{
+	public void move()
+	{
+		System.out.println("독수리가 하늘을 납니다 ");
+	}
+
+	public void flying() 
+	{
+		System.out.print("독수리가 날개를 쭉 펴고 멀리 날아갑니다");
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+06. 05번의 선언된 클래스를 이용하여 Animal 클래스를 매개변수로 하는 static 형태의 
+메서드 move Animal을 선언하고 아래와 같은 출력 형태로 표시되도록 
+프로그래밍 하여라. 
+
+예시 - 선언된 static메서드 ) 
+
+static void moveAnimal(Animal animal) {
+		animal.move();                     
+	} 
+
+
+[ 출력 결과 ] 
+
+동물이 움직입니다.
+사람이 두 발로 걷습니다. 
+호랑이가 네 발로 뜁니다. 
+독수리가 하늘을 납니다 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+07. 다음 추상 클래스의 선언이나 사용이 잘못된 것을 모두 고르고  에러가 있는 이유를 기술하시오. 
+
+
+(1) abstract class A {
+      void f();
+   }
+   
+(2) abstract class A {
+      void f() { System.out.println("~"); }
+   }
+   
+(3) abstract class B {
+      abstract void f();
+   }
+   class C extends B {
+   }
+   
+(4) abstract class B {
+      abstract int f();
+   }
+   class C extends B {
+      void f() { System.out.println("~"); }
+   }
+
+
+
+
+[ 문제 풀이 ]
+: 1, 3, 4
+- 1. void f(); 를 abstract void f(); 로 수정한다.
+
+- 2. 오류가 없다. _ 추상 클래스에 추상 메소드가 없어도 된다.
+
+- 3. 추상 클래스를 상속받고 추상 메소드를 오버라이딩하지 않으면 클래스 C도 추상 클래스가 된다. _ abstract class C extends B로 수정한다.
+
+- 4. 추상 클래스 B의 메소드 f는 int 타입의 메소드 이지만, 상속받는 클래스 C에서는 void 타입의 메소드를 적었다. int f() { System.out.println("~"); return 0; } 으로 수정한다.
+
+
+
+
+
+
+
+
+
+08. 추상 클래스  Computer 를 상속받는 DeskTop, NoteBook 클래스와  NoteBook  클래스를 상속받는 
+ MyNoteBook 클래스를 선언하고 DeskTop, NoteBook,  MyNoteBook 클래스를 
+객체화하여 테스트하시오.
+
+- 추상 클래스는 아래 소스를 이용한다. 
+- 자손 클래스들은 추상 메서드를 재정의해야한다. 
+- 테스트를 위해 객체화하고 출력문을 이용하여 출력한다. 
+
+public abstract class Computer {
+
+	public abstract void display();
+	public abstract void typing();
+	public void turnOn()
+	{
+		System.out.println("전원을 켭니다.");
+	}
+	public void turnOff()
+	{
+		System.out.println("전원을 끕니다.");
+	}
+}
+
+
+
+[ 실행 결과 예시 ]
+
+DeskTop Display()
+DeskTop Typing()
+전원을 끕니다.
+전원을 켭니다.
+NoteBook Display()
+MyNoteBook Typing()
+전원을 끕니다.
+전원을 켭니다.
+
+
+
+
+[ 문제 풀이 ]
+
+abstract class Computer {
+
+	public abstract void display();
+	public abstract void typing();
+	public void turnOn()
+	{
+		System.out.println("전원을 켭니다.");
+	}
+	public void turnOff()
+	{
+		System.out.println("전원을 끕니다.");
+	}
+}
+
+
+
+class DeskTop extends Computer{
+	
+	@Override
+	public void display() {
+		System.out.println("DeskTop Display()");
+	}
+
+	@Override
+	public void typing() {
+		System.out.println("DeskTop Typing()");		
+	}
+
+}
+
+class NoteBook extends Computer{
+
+	@Override
+	public void display() {
+		System.out.println("NoteBook Display()");		
+	}
+	
+	@Override
+	public void typing() {
+		System.out.println("NoteBook Typing()");		
+	}
+	
+}
+
+
+class MyNoteBook extends NoteBook{
+
+	@Override
+	public void typing() {
+		System.out.println("MyNoteBook Typing()");
+	}
+
+}
+
+
+
+
+public class Quiz9_08 {
+
+	public static void main(String[] args) {
+		
+		// 추상클래스라서 객체 생성 에러 발생 
+				// Computer c1 = new Computer();
+				Computer c2 = new DeskTop();
+				// Computer c3 = new NoteBook();
+				Computer c4 = new MyNoteBook();
+				
+				c2.display();
+				c2.typing();
+				c2.turnOff();
+				c2.turnOn();
+				
+				c4.display();
+				c4.typing();
+				c4.turnOff();
+				c4.turnOn();
+		
+		
+		
+	}
+
+}
+
+
+
+
+
+
+
+09. 철수 학생은 다음 필드와 메소드를 가진 4개의 클래스 Add, Sub, Mul, Div를 작성하려고 한다
+
+- int 타입의 a, b 필드: 2개의 피연산자
+- void setValue(int a, int b): 피연산자 값을 객체 내에 저장한다.
+- int calculate(): 클래스의 목적에 맞는 연산을 실행하고 결과를 리턴한다.
+
+
+곰곰 생각해보니, Add, Sub, Mul, Div 클래스에 공통된 필드와 메소드가 존재하므로 
+새로운 추상 클래스 Calc를 작성하고 Calc를 상속받아 만들면 되겠다고 생각했다. 
+
+그리고 main() 메소드에서 다음 실행 사례와 같이 2개의 정수와 연산자를 입력받은 후, 
+Add, Sub, Mul, Div 중에서 이 연산을 처리할 수 있는 객체를 생성하고 
+setValue() 와 calculate()를 호출하여 그 결과 값을 화면에 출력하면 된다고 생각하였다.
+
+ 철수처럼 프로그램을 작성하라.
+
+[ 결과 예시 ]
+//  2개의 정수와 연산자 입력 
+두 정수와 연산자를 입력하시오 >> 5 7 +
+5 + 7 = 12
+
+두 정수와 연산자를 입력하시오 >> 5 7 *
+5 * 7 = 35
+
+
+
+[ 문제 풀이 ]
+import java.util.Scanner;
+
+abstract class Calc {
+	protected int a;
+	protected int b;
+	public void setValue(int a, int b) {
+		this.a = a;
+		this.b = b;
+	}
+	abstract int calculate();
+}
+
+class Add extends Calc{
+	public int calculate() {
+		return a+b;
+	}
+}
+
+class Sub extends Calc{
+	public int calculate() {
+		return a-b;
+	}
+}
+
+class Mul extends Calc {
+	public int calculate() {
+		return a*b;
+	}
+}
+
+class Div extends Calc{
+	public int calculate() {
+		if(b == 0)
+			return -1;
+		return a/b;
+	}
+}
+
+public class Quiz9_09 {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int result=0;
+		System.out.print("두 정수와 연산자를 입력하시오 >> ");
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		char c = sc.next().charAt(0);
+		Calc cal;
+		switch(c) {
+		case '+' : 
+			cal = new Add();
+			break;
+		case '-' :
+			cal = new Sub();
+			break;
+		case '*' :
+			cal = new Mul();
+			break;
+		case '/' :
+			cal = new Div();
+			break;
+		default :
+			System.out.println("잘못된 연산자 입니다.");
+			sc.close();
+			return;
+		}
+		cal.setValue(a, b);
+		result = cal.calculate();
+		System.out.println(result);
+		sc.close();
+
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+10. 객체 지향 방식을 이용하여 자판기 프로그램을 금액을 입력하고 
+    메뉴를 고른 뒤 잔돈을 출력하는 프로그램을 작성하고 테스트 하시오. 
+- 잔돈을 줄 때 천원, 오백원, 백원짜리 몇개를 줘야하는지 계산하여 출력.
+- 입력한 금액이 선택한 메뉴의 가격보다 부족하면 돈이 부족하다는 문장을 출력.
+
+
+
+[ 실행 결과 : 예시1 ]
+
+금액을 입력하세요.( 자판기 프로그램 종료시 -1) >> 
+1000
+
+메뉴를 고르세요
+1.콜라(800원) 2.생수(500원) 3.비타민워터(1500원)  99. 종료 >> 1
+
+콜라가 나왔습니다. 
+잔돈 : 200원
+천원 : 0개, 오백원 : 0개, 백원 : 2개
+
+
+[ 실행 결과 : 예시2 ]
+금액을 입력하세요.( 자판기 프로그램 종료시 -1) >> 
+-1
+
+자판기 프로그램 종료
+
+
+
+[ 실행 결과 : 예시3 ]
+
+금액을 입력하세요.( 자판기 프로그램 종료시 -1) >> 
+10
+
+메뉴를 고르세요
+1.콜라(800원) 2.생수(500원) 3.비타민워터(1500원)  99. 종료 >> 2
+돈이 부족해요 ㅠㅠ
+
+잔돈 : 10원
+천원 : 0개, 오백원 : 0개, 백원 : 0개
+
+금액을 입력하세요.( 자판기 프로그램 종료시 -1) >> 
+
+
+[ 문제 풀이 ]
+
+import java.util.Scanner;
+
+class Cash {
+	private int money;
+	private int price;
+	
+	public void setMoney(int money) {
+		this.money = money;
+	}
+	public int getMoney() {
+		return this.money;
+	}
+	
+	public int getPrice() {
+		return price;
+	}
+	
+	
+}
+
+class Coffee {
+		static int flag = 0;
+		Cash cash = null;
+		
+		// 음료 가격
+		public int coffee_price = 300;
+		public int cocoa_price = 300;
+		public int milk_price = 300;
+		public int milk1_price = 300;
+		 
+		// 음료의 수량
+//		public int coffee = 10;
+//		public int cocoa = 10;
+//		public int milk = 10;
+//		public int milk2 = 10;
+	
+	// 자판기 프로그램 UI
+	public void vending_machine(Cash cash) {
+		
+		System.out.printf("\n");
+		System.out.println("========== 자판기 ==========");
+		System.out.printf("투입 금액 : %d \n",cash.getMoney());
+		System.out.println("1. 커피 (300)");
+		System.out.println("2. 코코아 (300)");
+		System.out.println("3. 우유 (300)");
+		System.out.println("4. 율무차 (300)");
+		System.out.println("5. 거스름돈 반환");
+		
+	}
+	
+	//자판기 음료 구매 및 비용 환불 
+	public void menu (Cash cash) {
+		
+		Scanner src = new Scanner(System.in);
+		
+		// 메뉴 번호 인자
+		int selection = 0;
+		
+		// 천원, 오백원, 백원
+		int oneThousandWon, fiveHundredWon, oneHundredWon = 0; 
+		
+		int money = cash.getMoney();
+		
+		while(selection != 5) {
+			
+			System.out.println("\n메뉴를 선택하세요.");
+			selection = src.nextInt();
+			
+		switch(selection) {
+		case 1:
+			if(money >= coffee_price) {
+				System.out.println("커피 구매가 완료되었습니다");
+				 money -= coffee_price;
+			}
+			
+			else if(money < coffee_price){
+				System.out.println("금액이 부족합니다.");
+				break;
+			}
+			System.out.printf("\n");
+			System.out.printf("현재 잔액은 %d원 입니다.\n",money);
+			break;
+		
+			
+		case 2:
+			if(money >= 300) {
+				System.out.println("코코아 구매가 완료되었습니다");
+				money -= cocoa_price;
+			}
+			
+			else if(money < cocoa_price){
+				System.out.println("금액이 부족합니다.");
+			}
+			System.out.printf("\n");
+			System.out.printf("현재 잔액은 %d원 입니다.\n",money);
+			break;
+			
+		case 3:
+			if(money >= milk_price) {
+				System.out.println("우유 구매가 완료되었습니다");
+				money -= milk_price;
+			}
+			
+			else if(money < milk_price){
+				System.out.println("금액이 부족합니다.");
+			}
+			System.out.printf("\n");
+			System.out.printf("현재 잔액은 %d원 입니다.\n",money);
+			break;
+			
+		case 4:
+			if(money >= milk1_price) {
+				System.out.println("율무차 구매가 완료되었습니다");
+				money -= milk1_price;
+			}
+			else if(money < milk1_price){
+				System.out.println("금액이 부족합니다.");
+				break;
+			}
+			System.out.printf("현재 잔액은 %d원 입니다.\n",money);
+			break;
+			
+		case 5:
+			System.out.printf("현재 금액은 %d입니다. 거스름돈을 받으세요 \n",money);
+			
+			oneThousandWon = money/1000;
+	        fiveHundredWon = money%1000/500;
+	        oneHundredWon = money%1000%500/100;
+	        System.out.print("천원 : " + oneThousandWon + "개, " );
+	        System.out.print("오백원 : " + fiveHundredWon + "개, ");
+	        System.out.println("백원 : " + oneHundredWon + "개");
+	        
+			break;
+			
+		}
+		
+		
+		if(money <= 100) {
+			System.out.printf("\n");
+			System.out.printf("잔액이 부족합니다. 거스름돈 %d원을 반환합니다\n",money);
+			break;
+		}
+		
+		}
+	}
+}
+
+
+
+public class Quiz9_10 {
+	
+	public static void main(String[] args) {
+		Cash cash = new Cash();
+		Coffee coffee = new Coffee();
+		
+		//사용자가 투입할 돈.
+		Scanner scanner = new Scanner(System.in);
+		while (true) {
+			if (Coffee.flag == 1) break;
+			System.out.println("=============================");
+			System.out.println("금액을 입력하세요.( 자판기 프로그램 종료시 -1) ");
+			int money = scanner.nextInt();
+			if (money == -1) {
+	        	System.out.println("자판기 프로그램 종료");  
+	            break;
+	        }
+			cash.setMoney(money);
+		
+		
+			// 자판기 UI
+			coffee.vending_machine(cash);
+				
+			//자판기 메뉴
+			coffee.menu(cash);
+		}
+		
+		
+		
+	}
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

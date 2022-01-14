@@ -1,0 +1,629 @@
+// 자바 퀴즈 8 :  OOP
+
+
+01. 자바의 클래스와 객체에 대한 설명 중 틀린 것은?
+
+1) 클래스 바깥에 전역 변수는 선언할 수 없다.
+ㅇㅇ
+
+2) 클래스는 객체를 생성하기 위한 틀이다.
+ㅇㅇ
+
+3) 클래스의 멤버 변수를 필드라고 부르며, 클래스는 필드와 메소드로 이루어진다..
+ㅇㅇ
+4) 필드는 클래스 내에서 private 보다 public으로 선언하는 것이 바람직하다.
+ㄴㄴ
+
+
+
+
+02. 패키지에 대한 설명 중 잘못된 것은?
+
+1). package 키워드를 이용하여 패키지를 선언한다.
+ㅇㅇ
+2). 서로 관련된 클래스와 인터페이스들을 하나의 디렉터리에 묶어 놓은 것이다.
+ㅇㅇ
+3). 패키지는 컴파일된 클래스 파일들을 저장하는 위치를 지정한다.
+ㅇㅇ
+4) 자바 JDK는 클래스들을 모두 하나의 패키지에 담아 제공한다.
+ㄴㄴ
+
+
+03. com.quiz 패키지안에 500~599 사이의 숫자 중 10개를 출력하도록 
+프로그래밍하고 다른 패키지안에 실행 클래스를 정의하고 테스트하여라.
+이때 Math.random() 대신 random()을 이용하도록한다.
+
+
+
+
+
+
+04. 다음 클래스에는 컴파일 오류가 있다. 오류를 수정하여 결과가 출력되도록 프로그래밍하여라. 
+
+class Person {
+    private int age;
+    private을 public으로 바꾼다.
+}
+
+public class Example {
+    public static void main (String args[]) {
+        Person aPerson = new Person();
+        aPerson.age = 17;
+    }
+}
+
+
+
+
+
+05. 다음 코드를 객체 지향 프로그래밍의 특징인 데이타의 은닉, 캡슐화를 적용하여 
+다시 프로그래밍하고 테스트하시오. 
+
+
+class Power {
+    public int kick;
+    public int punch;
+}
+그냥 pirvate 쓰고 받아오기 하면 되지 않나.
+
+
+public class Example {
+    public static void main (String args[]) {
+        Power robot = new Power();
+        robot.kick = 10;
+        robot.punch = 20;
+    }
+}
+
+
+
+
+
+
+06. 다음 코드에서 오류가 있다면 오류를 수정하여 결과가 출력되도록 프로그래밍하여라. 
+
+class StaticSample {
+    public int x;
+    public static int y;
+    public static int f() { return y; }
+}
+public class UsingStatic {
+    public static void main (String[] args) {
+        StaticSample.x = 5; //(1) -- 안됨
+        StaticSample.y = 10; //(2)
+        int tmp = StaticSample.f(); //(3) tmp 값에 y를 넣어줌
+        StaticSample a = new StaticSample();
+	a.x = 5;
+        tmp = StaticSample.y; //(4) 이것도 마찬가지로 y 값 넣어줌
+    }
+}
+
+
+
+
+07.  다음 코드에는 final과 관련하여 오류가 발생한다. 오류의 원인을 기술하여라. 
+
+final class Rect {
+    final protected int x = 5;
+    final public void f() {
+        x++;
+        System.out.pring(x);
+    }
+}
+
+class SpecialRect extends Rect { // SpecialRect는 Rect를 상속받는다. // class가 final 이기 때문에 불가능
+    public void f() {
+        System.out.print(super.x); // super.x는 Rect의 x int x는 protected로 되어 있기 때문에 가져오기 불가능
+    }
+}
+
+
+
+
+08.  달을 입력하면 입력한 달의 마지막 날짜와 계절을 출력하도록 프로그래밍하시오.
+조건 : private 접근 제한자 이용. 달은 1~12까지만 입력 가능. getter(), setter() 이용 
+
+class Mydate {
+     private int day;
+     private int month;
+}  
+
+
+[ 실행 결과 ] 
+
+Month 입력 >>  2
+
+출력 
+2월은 겨울입니다. 마지막 날짜는 28일 또는 29일 입니다. 
+
+
+
+
+
+09. 08의 프로그래밍과 윤년 알고리즘을 이용하여 
+    달의 마지막 날짜와 윤년인지 평년인지 출력하도록 
+    프로그래밍하시오.
+(윤년 알고리즘은 인터넷 활용) 
+
+class Mydate2 {
+     private int day;
+     private int month;
+     private int year;
+}  
+
+
+[ 실행 결과 ] 
+Year 입력 >> ?
+Month 입력 >>  2
+
+출력 
+? 년 2월은 윤년입니다. 마지막 날짜는 29일 입니다. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------
+01. 주소록과 관련된 Address 클래스를 정의하고 실행 결과를 참조하여 테스트하시오. 
+
+필드: 
+이름, 전화번호, 주소 
+
+메서드: 
+생성자 
+필드 출력 
+
+
+[실행 결과]
+인원수 >> 3
+
+이름, 전화번호, 주소 입력>> 오로라 010-777-7777 전주
+이름, 전화번호, 주소 입력>> 마동탁 010-333-3333 마산
+이름, 전화번호, 주소 입력>> 김석진 010-666-9999 천안
+저장되었습니다...
+
+검색할 이름 >> 홍길동
+홍길동이 없습니다.
+
+검색할 이름 >> 김석진
+전화번호 : 010-666-9999
+주소 : 천안 
+
+검색할 이름 >>그만
+프로그램을 종료합니다. 
+
+
+[Hint] Address 클래스에서 저장할 사람의 수를 입력받고, Address  배열을 생성한다. 
+한 사람의 정보는 하나의 Phone 객체에 저장한다. 
+7번 정답을 참고하기 바란다. 문자열 a와 b가 같은지 비교할 때 a.equals(b)가 참인지로 판단한다.
+
+
+
+[풀이]
+
+package java_study4_8;
+
+import java.util.Scanner;
+
+class Phone {
+   private String name;
+   private String tel;
+   Phone(String name, String tel) {
+      this.name = name;
+      this.tel = tel;
+   }
+   public String getName() {
+      return name;
+   }
+   public String getTel() {
+      return tel;
+   }
+}
+
+public class PhoneBook {
+   
+   public static void main(String[] args) {
+      // TODO Auto-generated method stub
+      Scanner sc = new Scanner(System.in);
+      Phone phone[];
+      int i;
+      System.out.print("인원수 >> ");
+      int num = sc.nextInt();
+      phone = new Phone[num];
+      for(i=0; i<phone.length; i++) {
+         System.out.print("이름과 전화번호(이름과 번호는 빈 칸없이 입력)>>");
+         String name = sc.next();
+         String tel = sc.next();
+         phone[i] = new Phone(name, tel);
+      }
+      System.out.println("저장되었습니다...");
+      while(true) {
+         System.out.print("검색할 이름 >>");
+         String name = sc.next();
+         for(i=0; i<num; i++) {
+            if(name.equals(phone[i].getName())) {
+               System.out.println(name+"의 번호는 "+phone[i].getTel()+" 입니다.");
+               i--;
+               break;
+            }
+         }
+         if(name.equals("그만")) break;
+         if (i == num) System.out.println(name+"이 없습니다.");
+      }
+      
+      sc.close();
+   }
+
+}
+
+
+--------------------------------------------------
+02.  상속을 이용하여 다음 클래스들을 재작성하고 테스트하시오. 
+( 모든 펜의 공통 속성을 포함하는 부모 클래스 Pen 필요)
+
+class SharpPencil { // 샤프펜슬
+   int width; // 펜의 굵기
+   int amount; // 남은 량
+   int getAmount() { return amount; }
+   void setAmount (int amount) { this.amount = amount; }
+}
+
+class Ballpen  { // 볼펜
+   int amount; // 남은 량
+   String color; // 볼펜의 색
+   int getAmount() { return amount; }
+   void setAmount (int amount) { this.amount = amount; }
+   String getColor() { return color; }
+   void setColor(String color) { this.color = color; }
+}
+
+class FountainPen { // 만년필
+   int amount; // 남은 량
+   String color; // 볼펜의 색
+   int getAmount() { return amount; }
+   void setAmount (int amount) { this.amount = amount; }
+   String getColor() { return color; }
+   void setColor(String color) { this.color = color; }
+   void refill (int n) { setAmount(n); }
+
+
+
+[ 문제 풀이 ]
+
+class Pen { // 모든 펜의 공통 속성
+   private int amount; // 남은 량
+   public int getAmount() { return amount; }
+   public void setAmount (int amount) { this.amount = amount; }
+}
+class SharpPencil extends Pen{ // 샤프펜슬
+   private int width; // 펜의 굵기
+} 
+
+class Ballpen extends Pen { // 볼펜
+   private String color; // 볼펜의 색
+   public String getColor() { return color; }
+   public void setColor(String color) { this.color = color; }
+}
+
+class FountainPen extends Ballpen{ // 만년필
+   public void refill (int n) { setAmount(n); }
+}
+
+
+--------------------------------------------------
+
+03.  다음 LgTV 클래스가 있다. LgTV를 상속받은 ColorTV 클래스를 선언하고 테스트하시오. 
+(ColorLgTV 클래스에 추가되는 속성과 메서드는 임의 작성)
+
+class LgTV{
+   int size;
+   TV(int size) { this.size = size; }
+   int getSize() { return size; }
+}
+
+
+04. 03번의 ColorTV를 상속받는 SmartTV 클래스를  선언하고 테스트하시오. 
+(SmartTV 클래스에 추가되는 속성과 메서드는 임의 작성)
+
+
+import java.util.Scanner;
+
+
+class LgTV{
+	int size;
+	LgTV(int size) { this.size = size; }
+	int getSize() { return size; }
+}
+
+
+class ColorTV extends LgTV {
+	private int resolution;
+	ColorTV(int size, int resolution) {
+		super(size);
+		this.resolution = resolution;
+	}
+	public void printProperty() {
+		System.out.print(getSize()+"인치 "+resolution+"컬러");
+	}
+}
+
+class IPTV extends ColorTV {
+	String IP;
+	IPTV(String IP, int size, int resolution) {
+		super(size, resolution);
+		this.IP = IP;
+	}
+	public void printProperty() {
+		System.out.print("나의 IPTV는 "+IP+" 주소의 ");
+		super.printProperty();
+	}
+
+}
+
+
+
+public class Quiz7_02 {
+	public static void main(String[] args) {
+
+		IPTV iptv = new IPTV("192.1.1.2", 32, 2048); //"192.1.1.2" 주소에 32인치, 2048컬러
+		iptv.printProperty();
+
+	}
+}
+
+
+
+
+
+
+05. Figure1, Figure2 클래스를 PointXY 클래스를 이용하여 
+     상속과 포함 관계로 프로그래밍하고 테스트하시오. 
+
+// PointXY 클래스
+class PointXY {
+	int x; 
+	int y;
+	
+	PointXY() {}
+	
+	PointXY(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+}
+
+[ 실행 결과 예시]
+=========포함관계=======
+도형 이름 = 사각형
+x 좌표 = 10
+y 좌표 = 10
+가로 = ?
+세로 = ?
+넓이 = ?
+
+=========상속관계=======
+도형 이름 = 타원
+x 좌표 = 50
+y 좌표 = 50
+반지름 = ?
+넓이 = ?
+
+
+
+
+
+
+// 포함 관계 테스트 2
+
+class PointXY {
+	int x; 
+	int y;
+	
+	PointXY() {}
+	
+	PointXY(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+}
+
+
+class Figure1 {
+	// 포함 
+	PointXY point = new PointXY();
+	String name;
+	int width;
+	int height;
+
+	Figure1(int x, int y, String name, int width, int height) {
+		 point.x = x;
+		 point.y = y;
+		 this.name = name;				 
+		 this.width = width;				 
+		 this.height = height;				 
+	}
+	
+	void displayInfo() {
+		System.out.println("=========포함관계=======");
+		System.out.println("도형 이름 = " + name);
+		System.out.println("x 좌표 = " + point.x);
+		System.out.println("y 좌표 = " + point.y);
+		System.out.println("가로 = " + width);
+		System.out.println("세로 = " + height);
+	}
+	
+}
+
+
+class Figure2 extends PointXY {
+	// 상속  
+	String name;
+	int width;
+	int height;
+
+	Figure2(int x, int y, String name, int width, int height) {
+		super(x,y);
+		this.name = name;				 
+		this.width = width;				 
+		this.height = height;				 
+	}
+	
+	void displayInfo() {
+		System.out.println("=========상속관계=======");
+		System.out.println("도형 이름 = " + name);
+		System.out.println("x 좌표 = " + x);
+		System.out.println("y 좌표 = " + y);
+		System.out.println("가로 = " + width);
+		System.out.println("세로 = " + height);
+	}
+	
+}
+
+
+
+public class Composite_test2 {
+
+	public static void main(String[] args) {
+		Figure1 f1 = new Figure1(10, 10, "사각형", 50, 50);
+		f1.displayInfo();
+		Figure2 f2 = new Figure2(50, 50, "사다리꼴", 100, 100);
+		f2.displayInfo();
+		
+
+	}
+
+}
+
+
+06. 자동차, 트럭, 스포츠카와 관련된 클래스를 정의하고 테스트하시오. 
+단 공통 속성(필드)와 기능(메서드)는 상속을 이용한다. 
+크락션 기능은 오버라이딩한다.
+
+자동차 클래스 
+- 필드 : 이름, 배기량 
+- 기능 : 크락션(띠띠)
+
+트럭 클래스 
+- 필드 : 이름 배기량 적재량 
+- 기능 : 크락션(빵빵), 짐싣기 
+
+스포츠카 클래스 
+- 필드 ; 이름, 배기량, 최대속도 
+- 기능 : 크락션(뿌와앙뽜앙!!!), 드라이브하기 
+
+
+
+
+
+
+
+07. this, super, this(), super(), overloading, overriding 에 대해 기술하시오. 
+
+
+
+
+
+ * this : 나 자신의 객체를 가리키는 참조 변수, this 를 통해 나의 멤버에 접근가능
+ * super: 부모의 객체를 가리키는 참조 변수, super 를 통해서 부모의 멤버에 접근가능
+ * 
+ * this() : 내 클래스의 생성자를 호출
+ * super() : 부모 클래스의 생성자를 호출
+
+오버로딩 - 기존에 없는 새로운 메서드를 정의하는 것 
+오버라이딩 - 상속받은 메서드의 내용을 변경하는 것 
+
+
+
+08. SuperClass 와 SuperClass를 상속받는 SubClass를 선언하고 테스트하시오. 
+(상속, 오버라이딩 이용) 
+
+SuperClass 필드 
+- x,y
+- 조건 추가 : x는 y보다 작거나 같아야 한다.
+- 조건 추가 : x가 y보다 큰경우 0으로 셋팅한다.
+
+SuperClass 메서드 
+-  title() : 부모 메소드 출력 
+-  sum() : x~y까지의 누적합 반환 
+
+SubClass 메서드 
+-  title() : 자식 메소드 출력 
+-  sum() : x~y까지의 짝수의 누적합 반환 (오버라이딩)
+-  sum2() : x~y까지의 누적합 반환 
+
+
+class SuperClass {
+	void check() {
+		System.out.println("부모 메소드");
+	}
+
+	void sum(int x, int y) {
+		int sum = 0;
+		for (int i = x; i <= y; i++) {
+			sum += i;
+		}
+		System.out.println("합계 : " + sum);
+	}
+}
+
+class SubClass extends SuperClass {
+	void check() { // 메소드 오버라이딩
+		System.out.println("자식 메소드");
+	}
+
+	void sum(int x, int y) { // 메소드 오버라이딩
+		int sum = 0, odd = 0, even = 0;
+		for (int i = x; i <= y; i++) {
+			if (i % 2 == 0) {
+				even += i;
+			} 
+		}
+		System.out.println("짝수 합 : " + even);
+//		super.sum(x, y); // 부모 메소드 호출
+	}
+	
+	void sum2(int x, int y) {
+		super.sum(x, y);
+	}
+	
+	
+}
+
+public class Quiz7_08 {
+	public static void main(String[] args) {
+
+		SuperClass sup = new SuperClass();
+		sup.check();
+		sup.sum(0, 10);
+		
+		SubClass sub = new SubClass();
+		sub.check();
+		sub.sum(1, 10);
+		sub.sum2(1, 10);
+		
+	}
+}
+
